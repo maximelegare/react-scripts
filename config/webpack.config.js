@@ -662,6 +662,17 @@ module.exports = function (webpackEnv) {
       // during a production build.
       // Otherwise React will be compiled in the very slow development mode.
       new webpack.DefinePlugin(env.stringified),
+
+
+      // maximeLegare -- 2021/07/14 -- to access process.env
+      new webpack.DefinePlugin(
+        {"process.env": {
+          NODE_ENV:JSON.stringify("production")
+        }}
+    ),
+
+      
+
       // This is necessary to emit hot updates (CSS and Fast Refresh):
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       // Experimental hot reloading for React .
